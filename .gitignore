@@ -1,0 +1,17 @@
+# Ignore Python virtual environments
+venv/
+myenv/
+
+# Ignore model files
+*.onnx
+*.pth
+*.dll
+*.lib
+
+# PyTorch and TensorFlow generated stuff
+*.pt
+*.h5
+
+# Cache and temp
+__pycache__/
+*.pyc

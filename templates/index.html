@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LungDetect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function showSection(sectionId) {
+            document.getElementById('accurate-results').style.display = 'none';
+            document.getElementById('quick-analysis').style.display = 'none';
+            document.getElementById('expert-support').style.display = 'none';
+
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+        }
+        .section-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .tab-button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: #1d4ed8;
+            color: white;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .tab-button:hover {
+            background-color: #155ab6;
+        }
+        .hidden { display: none; }
+        footer {
+            background-color: #1d4ed8;
+            color: white;
+            padding: 20px 0;
+        }
+        footer a:hover {
+            color: #f0f0f0; /* Lighten on hover */
+        }
+        .section-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers child elements horizontally */
+}
+
+        
+        
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-2xl font-bold text-blue-600">LungDetect</h1>
+            <ul class="flex space-x-6">
+                <li><a href="/" class="text-blue-600 px-4 py-2 rounded-lg">Home</a></li>
+                <li><a href="/detect" class="text-blue-600 px-4 py-2 rounded-lg">Detect</a></li>
+                <li><a href="/about" class="text-blue-600 px-4 py-2 rounded-lg">Know More</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero bg-cover bg-center h-screen flex flex-col items-center justify-center text-white text-center relative" style="background-image: url('./static/bg1.jpg');">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <h1 class="text-5xl font-bold drop-shadow-lg relative">Advanced Lung Cancer Detection</h1>
+        <p class="text-lg mt-4 drop-shadow-lg relative">Using AI & ML for accurate and early detection from CT scans.</p>
+        <a href="/detect" class="mt-6 px-6 py-3 bg-blue-600 rounded-lg text-white text-lg font-semibold shadow-md hover:bg-blue-700 transition relative">Start Detection</a>
+    </section>
+    
+
+    <!-- Main Feature Boxes -->
+    <h1 class="text-3xl font-extrabold text-gray-900 text-center uppercase tracking-wide">Why Choose Us</h1>
+    <div class="container mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <!-- Accurate Results Section -->
+        <div class="section-card text-center flex flex-col items-center">
+            <h3 class="text-xl font-semibold mt-2">Accurate Results</h3>
+            <p class="text-gray-600 mt-2">Our ML system provides highly accurate detection results.</p>
+            <button class="tab-button" onclick="showSection('accurate-results')">
+                <i style="align-content: center;"></i> Check Result
+            </button>
+        </div>
+    
+        <!-- Quick Analysis Section -->
+        <div class="section-card text-center flex flex-col items-center">
+            <h3 class="text-xl font-semibold mt-2">Quick Analysis</h3>
+            <p class="text-gray-600 mt-2">Receive detailed analysis within minutes, allowing for timely medical intervention.</p>
+            <button class="tab-button mt-4 flex items-center justify-center" onclick="showSection('quick-analysis')">
+                <i></i> Check Analysis
+            </button>
+        </div>
+    
+        <!-- Expert Support Section -->
+        <div class="section-card text-center flex flex-col items-center">
+            <h3 class="text-xl font-semibold mt-2">Expert Support</h3>
+            <p class="text-gray-600 mt-2">Our team of experts is available to answer your questions and support you through the process.</p>
+            <button class="tab-button" onclick="showSection('expert-support')">
+                Check Experts
+            </button>
+        </div>
+    </div>
+    
+
+    <!-- Accurate Results Section -->
+    <section id="accurate-results" class="hidden text-center bg-gray-100 py-10">
+        <h2 class="text-3xl font-bold text-gray-800">Recent Detection Results</h2>
+        <p class="text-lg text-gray-600 mt-2">Latest 5 analyzed cases.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 mt-8">
+            {% for result in previous_results %}
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <img src="{{ url_for('static', filename='uploads/' + result.filename) }}" alt="Scan" class="w-full h-40 object-cover rounded-lg">
+                    <h3 class="text-lg font-semibold mt-3">{{ result.cancer_type }}</h3>
+                    <p class="{% if result.status == 'Cancer Detected' %}text-red-600{% else %}text-green-600{% endif %} font-bold">
+                        {{ result.status }}
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Quick Analysis Section -->
+    <section id="quick-analysis" class="hidden text-center bg-white py-10">
+        <h2 class="text-3xl font-bold text-gray-800">Quick Analysis</h2>
+        <p class="text-lg text-gray-600 mt-2">Overview of detected lung cancer cases.</p>
+
+        <div class="flex flex-wrap justify-center gap-6 mt-8">
+            {% for cancer_type, percentage in type_percentages.items() %}
+                <div class="bg-gray-100 p-6 rounded-lg shadow-md w-60 text-center">
+                    <h3 class="text-xl font-semibold text-gray-800">{{ cancer_type }}</h3>
+                    <p class="text-blue-600 text-3xl font-bold mt-2">{{ percentage|round(2) }}%</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Expert Support Section -->
+        <section id="expert-support" class="hidden text-center bg-gray-100 py-10">
+            <h2 class="text-3xl font-bold text-gray-800">Expert Support</h2>
+            <p class="text-lg text-gray-600 mt-2">Contact details of our medical specialists.</p>
+        
+            <!-- Dr. Mounika Nagula -->
+            <div class="bg-white p-6 rounded-lg shadow-md w-80 mx-auto text-center mb-6">
+                <h3 class="text-xl font-semibold text-gray-800">Dr. Mounika Nagula</h3>
+                <p class="text-gray-600">Radiation Oncologist, American Oncology Institute</p>
+                <p class="text-blue-600 font-bold">+91 12345 67890</p>
+            </div>
+        
+            <!-- Dr. Vijay Krishna Jasti -->
+            <div class="bg-white p-6 rounded-lg shadow-md w-80 mx-auto text-center mb-6">
+                <h3 class="text-xl font-semibold text-gray-800">Dr. Vijay Krishna Jasti</h3>
+                <p class="text-gray-600">Radiation Oncologist, American Oncology Institute</p>
+                <p class="text-blue-600 font-bold">+91 98765 43210</p>
+            </div>
+        
+            <!-- Dr. Prathap Kumar Reddy S -->
+            <div class="bg-white p-6 rounded-lg shadow-md w-80 mx-auto text-center mb-6">
+                <h3 class="text-xl font-semibold text-gray-800">Dr. Prathap Kumar Reddy S</h3>
+                <p class="text-gray-600">Radiation Oncologist, American Oncology Institute</p>
+                <p class="text-blue-600 font-bold">+91 11223 44556</p>
+            </div>
+        
+            <!-- Dr. Ramprahlad KM -->
+            <div class="bg-white p-6 rounded-lg shadow-md w-80 mx-auto text-center mb-6">
+                <h3 class="text-xl font-semibold text-gray-800">Dr. Ramprahlad KM</h3>
+                <p class="text-gray-600">Medical Oncologist, American Oncology Institute</p>
+                <p class="text-blue-600 font-bold">+91 22334 55667</p>
+            </div>
+        </section>
+        
+
+    <!-- Footer -->
+    <footer>
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between">
+            <div class="mb-8 md:mb-0">
+                <h3 class="text-xl font-bold">LungDetect</h3>
+                <p class="mt-4">Advanced lung cancer detection using Machine Learning for early diagnosis and treatment.</p>
+            </div>
+            <div class="mb-8 md:mb-0">
+                <h4 class="text-lg font-semibold">Quick Links</h4>
+                <ul class="mt-4 space-y-2">
+                    <li><a href="/" class="hover:text-white">Home</a></li>
+                    <li><a href="/detect" class="hover:text-white">Detect</a></li>
+                    <li><a href="/about" class="hover:text-white">Know More</a></li>
+                </ul>
+            </div>
+            <div class="mb-8 md:mb-0">
+                <h4 class="text-lg font-semibold">Contact Info</h4>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-phone-alt mr-2"></i> +91 12345 67890</li>
+                    <li><i class="fas fa-envelope mr-2"></i> ml@lungdetect.com</li>
+                    <li><i class="fas fa-map-marker-alt mr-2"></i> Kits Guntur</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-semibold">Working Hours</h4>
+                <ul class="mt-4 space-y-2">
+                    <li>24/7 Access</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('accurate-results').style.display = 'none';
+        document.getElementById('quick-analysis').style.display = 'none';
+        document.getElementById('expert-support').style.display = 'none';
+    </script>
+
+</body>
+</html>

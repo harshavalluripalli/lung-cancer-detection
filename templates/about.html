@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Lung Cancer Detection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f4f7fa;
+            color: #333;
+        }
+        .hero {
+            background-image: url('./static/bg3.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+        }
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            height: 100%;
+        }
+        .highlight {
+            color: #1d4ed8; /* Blue color */
+            font-weight: bold;
+        }
+        h2 {
+            border-bottom: 2px solid #1d4ed8; /* Blue underline */
+            padding-bottom: 0.5rem;
+        }
+        .list-disc li {
+            margin-bottom: 0.5rem; /* Space between list items */
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #1d4ed8; /* Change color on hover */
+        }
+        .footer {
+            background-color: #1d4ed8; /* Blue footer */
+            color: white;
+        }
+        .footer a {
+            color: white;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #f0f0f0; /* Lighten on hover */
+        }
+    </style>
+</head>
+<body>
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-blue-600">LungDetect</div>
+            <ul class="flex space-x-6">
+                <li><a href="/" class="nav-link text-gray-700">Home</a></li>
+                <li><a href="/detect" class="nav-link text-gray-700">Detect</a></li>
+                <li><a href="/about" class="nav-link text-gray-700">Know More</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-overlay flex items-center justify-center">
+            <h1 class="text-4xl text-white font-bold">About Us</h1>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8">
+        <p class="text-center text-lg mb-4">We are dedicated to providing advanced Machine Learning for lung cancer detection. Our mission is to enhance early diagnosis and treatment through innovative solutions.</p>
+        
+        <h2 class="mt-4 text-2xl highlight">What is Lung Cancer?</h2>
+        <p class="mt-2">Lung cancer is a type of cancer that begins in the lungs. It is one of the most common types of cancer and can be life-threatening. Early detection is crucial for effective treatment and better outcomes.</p>
+        
+        <h2 class="mt-4 text-2xl highlight">Symptoms of Lung Cancer</h2>
+        <ul class="list-disc list-inside mt-2">
+            <li>Persistent cough that worsens over time</li>
+            <li>Chest pain that may worsen with deep breathing, coughing, or laughing</li>
+            <li>Shortness of breath</li>
+            <li>Unexplained weight loss</li>
+            <li>Fatigue</li>
+        </ul>
+        
+        <h2 class="mt-4 text-2xl highlight">Why Choose Our Service?</h2>
+        <p class="mt-2">Our Advanced Machine Learning Lung Cancer Detection system is designed to provide accurate results quickly, allowing for timely medical intervention. We are committed to supporting our users with expert guidance throughout the process.</p>
+    </div>
+
+    <footer class="footer py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 Lung Cancer Detection. All rights reserved.</p>
+            <a href="/about" class="footer-link">Privacy Policy</a>
+        </div>
+    </footer>
+</body>
+</html>

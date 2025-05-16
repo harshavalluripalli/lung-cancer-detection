@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detect - Lung Cancer Detection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./static/style.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */
+            background-image: url('./static/bg1.jpg');
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            background-attachment: fixed; /* Keep the background fixed during scroll */
+            color: #333; /* Change text color for better readability */
+        }
+        .upload-box {
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly more opaque for better readability */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            transition: transform 0.3s ease; /* Animation for hover effect */
+        }
+        .upload-box:hover {
+            transform: scale(1.02); /* Slightly enlarge on hover */
+        }
+        .highlight {
+            background-color: rgba(29, 78, 216, 0.1); /* Light blue background */
+            color: #1d4ed8; /* Blue text color */
+            font-weight: bold;
+            padding: 10px; /* Add padding for better appearance */
+            border-radius: 5px; /* Rounded corners */
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #1d4ed8; /* Change color on hover */
+        }
+        .upload-button {
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Animation for button */
+        }
+        .upload-button:hover {
+            background-color: #1d4ed8; /* Change button color on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+        footer {
+            background-color: #1d4ed8; /* Blue footer */
+            color: white;
+            margin-top: auto; /* Push footer to the bottom */
+            padding: 1rem 0; /* Padding for the footer */
+        }
+        footer a {
+            color: white;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #f0f0f0; /* Lighten on hover */
+        }
+    </style>
+</head>
+<body>
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-blue-600">LungDetect</div>
+            <ul class="flex space-x-6">
+                <li><a href="/" class="nav-link text-gray-700">Home</a></li>
+                <li><a href="/detect" class="nav-link text-gray-700">Detect</a></li>
+                <li><a href="/about" class="nav-link text-gray-700">Know More</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container flex-grow">
+        <h1 style="text-align: center; font-weight: bold; color: #f0f0f0; background-color: #1d4ed8; margin:auto; border-radius: 50;">Upload Your Medical Image</h1>
+        <div class="upload-box">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="file" name="scanUpload" accept="image/*" required class="form-control-file">
+                </div>
+                <button type="submit" class="mt-4 upload-button bg-blue-600 text-white py-2 px-4 rounded-lg">Detect Now</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="text-center">
+        <p>&copy; 2025 Lung Cancer Detection. All rights reserved.</p>
+    </footer>
+</body>
+</html>

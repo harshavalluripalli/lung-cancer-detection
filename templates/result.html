@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result - Lung Cancer Detection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./static/style.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */
+            background-image: url('./static/bg1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            background-attachment: fixed; /* Keep the background fixed during scroll */
+            color: #333; /* Change text color to dark for better readability */
+        }
+        .result-box {
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly more opaque for better readability */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+        }
+        .highlight {
+            color: #1d4ed8; /* Blue highlight color */
+            font-weight: bold;
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #1d4ed8; /* Change color on hover */
+        }
+        .footer {
+            background-color: #1d4ed8; /* Blue footer */
+            color: white;
+            margin-top: auto; /* Push footer to the bottom */
+            padding: 1rem 0; /* Padding for the footer */
+        }
+        .footer a {
+            color: white;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #f0f0f0; /* Lighten on hover */
+        }
+        .result-content {
+            margin-top: 1rem;
+        }
+        .result-content p {
+            margin: 0.5rem 0; /* Space between result paragraphs */
+        }
+        .result-content img {
+            margin-top: 1rem; /* Space above the image */
+            border-radius: 10px; /* Rounded corners for the image */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for the image */
+        }
+        .upload-button {
+            transition: background-color 0.3s ease;
+        }
+        .upload-button:hover {
+            background-color: #1d4ed8; /* Change button color on hover */
+        }
+    </style>
+</head>
+<body>
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-blue-600">LungDetect</div>
+            <ul class="flex space-x-6">
+                <li><a href="/" class="nav-link text-gray-700">Home</a></li>
+                <li><a href="/detect" class="nav-link text-gray-700">Detect</a></li>
+                <li><a href="/about" class="nav-link text-gray-700">Know More</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container flex-grow">
+        <h1 style="text-align: center; font-weight: bold; color: #f0f0f0; background-color: #1d4ed8; margin:auto; border-radius: 50;">Detection Result</h1>
+        <div class="result-box">
+            <div class="result-content">
+                <p><strong class="highlight">Predicted Class:</strong> {{ result }}</p>
+                <p><strong class="highlight">Status:</strong> {{ cancer_status }}</p>
+                <p><strong class="highlight">Suggestion:</strong> {{ suggestion }}</p>
+                <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image" class="img-fluid">
+            </div>
+            <a href="/detect" class="mt-3 inline-block upload-button bg-blue-600 text-white py-2 px-4 rounded-lg">Upload Another Image</a>
+        </div>
+    </div>
+
+    <footer class="footer text-center mt-5">
+        <p>&copy; 2025 Lung Cancer Detection. All rights reserved.</p>
+    </footer>
+</body>
+</html>
